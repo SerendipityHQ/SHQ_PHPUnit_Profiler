@@ -1,0 +1,25 @@
+{
+    "name": "serendipity_hq/trust-back-me",
+    "license": "MIT",
+    "type": "library",
+    "description": "PHPUnit loggers to profile tests.",
+    "keywords": ["phpunit", "profiling", "loggers"],
+    "homepage": "https://github.com/SerendipityHQ/SHQ_PHPUnit_Profiler",
+    "authors": [
+        {
+            "name": "Adamo crespi",
+            "email": "hello@aerendir.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SerendipityHQ\\PHPUnit_Profiler": "src/"
+        }
+    },
+    "require": {
+        "symfony/stopwatch": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}
