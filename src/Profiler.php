@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @package     PHPUnit_Profiler
+ *
+ * @author      Adamo Crespi <hello@aerendir.me>
+ * @copyright   Copyright (C) 2016.
+ * @license     MIT
+ */
+
 namespace SerendipityHQ\Library\PHPUnit_Profiler;
 
 use Symfony\Component\Stopwatch\Stopwatch;
