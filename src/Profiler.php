@@ -20,6 +20,12 @@ class Profiler extends \PHPUnit_Framework_BaseTestListener
     private $profileTimeWithPhpunit = true;
     /** @var bool Toggle on or off the time profiling with Stopwatch */
     private $profileTimeWithStopwatch = false;
+    /** @var bool Toggle on or off the memory usage profiling */
+    private $profileMemoryUsage = false;
+    /** @var bool Toggle on or off the memory usage profiling with PHP */
+    private $profileMemoryCurrentUsage = true;
+    /** @var bool Toggle on or off the memory usage with Stopwatch */
+    private $profileMemoryDetailedUsage = false;
 
     /*
      *  Private options
@@ -48,7 +54,15 @@ class Profiler extends \PHPUnit_Framework_BaseTestListener
      */
     public function startTestSuite(\PHPUnit_Framework_TestSuite $suite)
     {
-        printf("\n\nStart testsuite '%s'\n", $suite->getName());
+        printf("\n\nStart testsuite '%s'", $suite->getName());
+
+        // Output memory profiling
+        if ($this->profileMemoryUsage) {
+            if ($this->profileMemoryCurrentUsage)
+                printf(" (Memory Currently used: %s)", $this->getCurrentMemoryUsed());
+        }
+
+        printf("\n");
 
         // Start Stopwatch for the current test
         if ($this->profileWithStopwatch)
@@ -60,7 +74,15 @@ class Profiler extends \PHPUnit_Framework_BaseTestListener
      */
     public function endTestSuite(\PHPUnit_Framework_TestSuite $suite)
     {
-        printf("\nEnded testsuite '%s\n", $suite->getName());
+        printf("\nEnded testsuite '%s", $suite->getName());
+
+        // Output memory profiling
+        if ($this->profileMemoryUsage) {
+            if ($this->profileMemoryCurrentUsage)
+                printf(" (Memory Currently used: %s)", $this->getCurrentMemoryUsed());
+        }
+
+        printf("\n");
 
         // Start Stopwatch for the current test
         if ($this->profileWithStopwatch)
@@ -93,11 +115,19 @@ class Profiler extends \PHPUnit_Framework_BaseTestListener
      */
     public function startTest(\PHPUnit_Framework_Test $test)
     {
-        printf("\n\nStart test '%s'\n", $test->getName());
+        printf("\n\nStart test '%s'", $test->getName());
 
         // Start Stopwatch for the current test
         if ($this->profileWithStopwatch)
             $this->getStopwatch()->start($test->getName());
+
+        // Output memory profiling
+        if ($this->profileMemoryUsage) {
+            if ($this->profileMemoryCurrentUsage)
+                printf(" (Memory Currently used: %s)", $this->getCurrentMemoryUsed());
+        }
+
+        printf("\n");
     }
 
     /**
@@ -108,7 +138,15 @@ class Profiler extends \PHPUnit_Framework_BaseTestListener
      */
     public function endTest(\PHPUnit_Framework_Test $test, $time)
     {
-        printf("Ended test '%s'\n", $test->getName());
+        printf("Ended test '%s'", $test->getName());
+
+        // Output memory profiling
+        if ($this->profileMemoryUsage) {
+            if ($this->profileMemoryCurrentUsage)
+                printf(" (Memory Currently used: %s)", $this->getCurrentMemoryUsed());
+        }
+
+        printf("\n");
 
         // Stop Stopwatch for the current test
         if ($this->profileWithStopwatch)
@@ -135,6 +173,22 @@ class Profiler extends \PHPUnit_Framework_BaseTestListener
     }
 
     /**
+     * Get the current memory usage in a formatted string.
+     *
+     * Format method taken from http://php.net/manual/en/function.memory-get-usage.php#96280
+     * @return string
+     */
+    protected function getCurrentMemoryUsed()
+    {
+        $size = memory_get_usage();
+
+        $unit = ['b','kb','mb','gb','tb','pb'];
+
+        return @round(
+            $size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i];
+    }
+
+    /**
      * Get the Stopwatch instance
      *
      * @return Stopwatch
@@ -151,6 +205,7 @@ class Profiler extends \PHPUnit_Framework_BaseTestListener
      */
     protected function initOptions(array $options)
     {
+        // Options for time profiling
         if (isset($options['profileTime']) && is_bool($options['profileTime']))
             $this->profileTime = $options['profileTime'];
 
@@ -159,6 +214,19 @@ class Profiler extends \PHPUnit_Framework_BaseTestListener
 
         if (isset($options['profileTimeWithStopwatch']) && is_bool($options['profileTimeWithStopwatch'])) {
             $this->profileTimeWithStopwatch = $options['profileTimeWithStopwatch'];
+            $this->profileWithStopwatch = true;
+        }
+
+        // Option for memoery usage profiling
+        if (isset($options['profileMemoryUsage']) && is_bool($options['profileMemoryUsage']))
+            $this->profileMemoryUsage = $options['profileMemoryUsage'];
+
+        if (isset($options['profileMemoryCurrentUsage']) && is_bool($options['profileMemoryCurrentUsage']))
+            $this->profileMemoryCurrentUsage = $options['profileMemoryCurrentUsage'];
+
+        if (isset($options['profileMemoryDetailedUsage']) && is_bool($options['profileMemoryDetailedUsage'])) {
+            $this->profileMemoryDetailedUsage = $options['profileMemoryDetailedUsage'];
+            $this->profileMemoryCurrentUsage = true;
             $this->profileWithStopwatch = true;
         }
     }
