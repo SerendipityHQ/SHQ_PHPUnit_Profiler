@@ -4,6 +4,11 @@ namespace SerendipityHQ\Library\PHPUnit_Profiler;
 
 use Symfony\Component\Stopwatch\Stopwatch;
 
+/**
+ * A PHPUnit listener to profile tests execution time and memory consumed.
+ *
+ * @package SerendipityHQ\Library\PHPUnit_Profiler
+ */
 class Profiler extends \PHPUnit_Framework_BaseTestListener
 {
     /*
@@ -39,6 +44,49 @@ class Profiler extends \PHPUnit_Framework_BaseTestListener
     }
 
     /**
+     * @param \PHPUnit_Framework_TestSuite $suite
+     */
+    public function startTestSuite(\PHPUnit_Framework_TestSuite $suite)
+    {
+        printf("\n\nStart testsuite '%s'\n", $suite->getName());
+
+        // Start Stopwatch for the current test
+        if ($this->profileWithStopwatch)
+            $this->getStopwatch()->start($suite->getName());
+    }
+
+    /**
+     * @param \PHPUnit_Framework_TestSuite $suite
+     */
+    public function endTestSuite(\PHPUnit_Framework_TestSuite $suite)
+    {
+        printf("\nEnded testsuite '%s\n", $suite->getName());
+
+        // Start Stopwatch for the current test
+        if ($this->profileWithStopwatch)
+            $event = $this->getStopwatch()->stop($suite->getName());
+
+        // Output time profiling
+        if ($this->profileTime) {
+            printf('Time took: ');
+
+            // Output time profiling with PHPUnit
+            if ($this->profileTimeWithPhpunit)
+                printf(" PHPUnit: N/A for a test suite; ");
+
+            // Output time profiling with Stopwatch
+            if ($this->profileTimeWithStopwatch && isset($event))
+                printf(" Stopwatch: %s ms;", $event->getDuration());
+
+            printf("\n");
+
+            // Freeup memory
+            if (isset($event))
+                $event = null;
+        }
+    }
+
+    /**
      * Called when a test in a test class is started
      *
      * @param \PHPUnit_Framework_Test $test
@@ -68,15 +116,15 @@ class Profiler extends \PHPUnit_Framework_BaseTestListener
 
         // Output time profiling
         if ($this->profileTime) {
-            printf('[Time took] ');
+            printf('Time took: ');
 
             // Output time profiling with PHPUnit
             if ($this->profileTimeWithPhpunit)
-                printf("PHPUnit: %s ms ", round($time * 1000, 2));
+                printf(" PHPUnit: %s ms; ", round($time * 1000, 2));
 
             // Output time profiling with Stopwatch
             if ($this->profileTimeWithStopwatch && isset($event))
-                printf(" Stopwatch: %s ms", $event->getDuration());
+                printf(" Stopwatch: %s ms;", $event->getDuration());
 
             printf("\n");
 
