@@ -9,7 +9,7 @@ use Symfony\Component\Stopwatch\Stopwatch;
  *
  * @package SerendipityHQ\Library\PHPUnit_Profiler
  */
-class Profiler extends \PHPUnit_Framework_BaseTestListener
+class PHPUnit_Profiler extends \PHPUnit_Framework_BaseTestListener
 {
     /*
      * Public options
