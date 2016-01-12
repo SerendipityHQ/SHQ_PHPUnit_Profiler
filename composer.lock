@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "69dfba06fdd60817c3506d6334fb7781",
-    "content-hash": "7345b434c8c2f63cbabff23adfe85023",
+    "hash": "99d07e7f7eb1a63322046e8c761b45bb",
+    "content-hash": "4244ae98d04beaa68b737b9923ac91c2",
     "packages": [
         {
             "name": "symfony/stopwatch",
