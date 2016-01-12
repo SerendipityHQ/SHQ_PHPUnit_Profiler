@@ -1,5 +1,5 @@
 {
-    "name": "serendipity_hq/trust-back-me",
+    "name": "serendipity_hq/phpunit_profiler",
     "license": "MIT",
     "type": "library",
     "description": "PHPUnit loggers to profile tests.",
