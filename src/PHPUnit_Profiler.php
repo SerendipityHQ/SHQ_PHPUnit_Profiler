@@ -227,10 +227,20 @@ class PHPUnit_Profiler extends \PHPUnit_Framework_BaseTestListener
      */
     protected function formatMemory($size)
     {
+        $isNegative = false;
         $unit = ['b','kb','mb','gb','tb','pb'];
 
-        return @round(
-            $size/pow(1024,($i=floor(log($size,1024)))),2
+        if (0 > $size) {
+            // This is a negative value
+            $isNegative = true;
+
+        }
+
+        $return = ($isNegative) ? '-' : '';
+
+        return $return
+        . @round(
+            abs($size)/pow(1024,($i=floor(log(abs($size),1024)))),2
         ) . ' ' . $unit[$i];
     }
 
