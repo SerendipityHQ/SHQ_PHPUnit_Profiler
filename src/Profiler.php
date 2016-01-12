@@ -171,18 +171,5 @@ class Profiler extends \PHPUnit_Framework_BaseTestListener
     protected function initStopwatch()
     {
         $this->stopwatch = new Stopwatch();
-
-        // Init the global stopwatch
-        return $this->getStopwatch()->start('global');
-    }
-
-    /**
-     * Stop the Stopwatch instance
-     *
-     * @return \Symfony\Component\Stopwatch\StopwatchEvent
-     */
-    protected function stopStopwatch()
-    {
-        return $this->getStopwatch()->stop('global');
     }
 }
