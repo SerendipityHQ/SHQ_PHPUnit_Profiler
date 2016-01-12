@@ -35,6 +35,5 @@ class Profiler extends \PHPUnit_Framework_BaseTestListener
     {
         if (isset($options['profileTime']) && is_bool($options['profileTime']))
             $this->profileTime = $options['profileTime'];
-        }
     }
 }
