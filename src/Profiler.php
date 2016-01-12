@@ -8,7 +8,7 @@ class Profiler extends \PHPUnit_Framework_BaseTestListener
 {
     private $stopwatch;
 
-    public function __construct()
+    public function __construct($options = [])
     {
         $this->stopwatch = new Stopwatch();
     }
