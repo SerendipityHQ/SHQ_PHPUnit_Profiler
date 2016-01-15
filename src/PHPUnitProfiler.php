@@ -12,7 +12,7 @@ use Symfony\Component\Stopwatch\Stopwatch;
 /**
  * A PHPUnit listener to profile tests execution time and memory consumed.
  */
-class PHPUnit_Profiler extends \PHPUnit_Framework_BaseTestListener
+class PHPUnitProfiler extends \PHPUnit_Framework_BaseTestListener
 {
     /*
      * Public options
@@ -249,9 +249,11 @@ class PHPUnit_Profiler extends \PHPUnit_Framework_BaseTestListener
         $return = ($isNegative) ? '-' : '';
 
         return $return
-        .@round(
+        . round(
             abs($size) / pow(1024, ($i = floor(log(abs($size), 1024)))), 2
-        ).' '.$unit[$i];
+        )
+        . ' '
+        . $unit[$i];
     }
 
     /**
