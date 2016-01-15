@@ -1,3 +1,12 @@
+[![Latest Stable Version](https://poser.pugx.org/serendipity_hq/phpunit_profiler/v/stable)](https://packagist.org/packages/serendipity_hq/phpunit_profiler)
+[![Build Status](https://travis-ci.org/SerendipityHQ/SHQ_PHPUnit_Profiler.svg?branch=master)](https://travis-ci.org/SerendipityHQ/SHQ_PHPUnit_Profiler)
+[![Total Downloads](https://poser.pugx.org/serendipity_hq/phpunit_profiler/downloads)](https://packagist.org/packages/serendipity_hq/phpunit_profiler)
+[![License](https://poser.pugx.org/serendipity_hq/phpunit_profiler/license)](https://packagist.org/packages/serendipity_hq/phpunit_profiler)
+[![Code Climate](https://codeclimate.com/github/SerendipityHQ/SHQ_PHPUnit_Profiler/badges/gpa.svg)](https://codeclimate.com/github/SerendipityHQ/SHQ_PHPUnit_Profiler)
+[![Test Coverage](https://codeclimate.com/github/SerendipityHQ/SHQ_PHPUnit_Profiler/badges/coverage.svg)](https://codeclimate.com/github/SerendipityHQ/SHQ_PHPUnit_Profiler/coverage)
+[![Issue Count](https://codeclimate.com/github/SerendipityHQ/SHQ_PHPUnit_Profiler/badges/issue_count.svg)](https://codeclimate.com/github/SerendipityHQ/SHQ_PHPUnit_Profiler)
+[![StyleCI](https://styleci.io/repos/49488856/shield)](https://styleci.io/repos/49488856)
+
 # SHQ_PHPUnit_Profiler
 
 A PHPUnit listener to profile the execution of test suites and tests inside them.
