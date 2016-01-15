@@ -6,6 +6,7 @@
 [![Test Coverage](https://codeclimate.com/github/SerendipityHQ/SHQ_PHPUnit_Profiler/badges/coverage.svg)](https://codeclimate.com/github/SerendipityHQ/SHQ_PHPUnit_Profiler/coverage)
 [![Issue Count](https://codeclimate.com/github/SerendipityHQ/SHQ_PHPUnit_Profiler/badges/issue_count.svg)](https://codeclimate.com/github/SerendipityHQ/SHQ_PHPUnit_Profiler)
 [![StyleCI](https://styleci.io/repos/49488856/shield)](https://styleci.io/repos/49488856)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/0ad683e4-b29b-4d8b-b968-cfb61e6117e3/mini.png)](https://insight.sensiolabs.com/projects/0ad683e4-b29b-4d8b-b968-cfb61e6117e3)
 
 # SHQ_PHPUnit_Profiler
 
