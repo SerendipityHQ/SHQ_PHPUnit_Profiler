@@ -8,6 +8,7 @@
 [![StyleCI](https://styleci.io/repos/49488856/shield)](https://styleci.io/repos/49488856)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/0ad683e4-b29b-4d8b-b968-cfb61e6117e3/mini.png)](https://insight.sensiolabs.com/projects/0ad683e4-b29b-4d8b-b968-cfb61e6117e3)
 [![Dependency Status](https://www.versioneye.com/user/projects/56ae2a7d7e03c7003db69697/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56ae2a7d7e03c7003db69697)
+[![Coverage Status](https://coveralls.io/repos/github/SerendipityHQ/SHQ_PHPUnit_Profiler/badge.svg?branch=master)](https://coveralls.io/github/SerendipityHQ/SHQ_PHPUnit_Profiler?branch=master)
 
 # SHQ_PHPUnit_Profiler
 
