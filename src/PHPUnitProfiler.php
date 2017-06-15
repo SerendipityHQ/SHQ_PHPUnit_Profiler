@@ -7,12 +7,15 @@
  */
 namespace SerendipityHQ\Library\PHPUnit_Profiler;
 
+use PHPUnit\Framework\BaseTestListener;
+use PHPUnit\Framework\Test;
+use PHPUnit\Framework\TestSuite;
 use Symfony\Component\Stopwatch\Stopwatch;
 
 /**
  * A PHPUnit listener to profile tests execution time and memory consumed.
  */
-class PHPUnitProfiler extends \PHPUnit_Framework_BaseTestListener
+class PHPUnitProfiler extends BaseTestListener
 {
     /*
      * Public options
@@ -58,9 +61,9 @@ class PHPUnitProfiler extends \PHPUnit_Framework_BaseTestListener
     }
 
     /**
-     * @param \PHPUnit_Framework_TestSuite $suite
+     * @param TestSuite $suite
      */
-    public function startTestSuite(\PHPUnit_Framework_TestSuite $suite)
+    public function startTestSuite(TestSuite $suite)
     {
         $this->memoryUsedBeforeTestsuite = memory_get_usage();
 
@@ -82,9 +85,9 @@ class PHPUnitProfiler extends \PHPUnit_Framework_BaseTestListener
     }
 
     /**
-     * @param \PHPUnit_Framework_TestSuite $suite
+     * @param TestSuite $suite
      */
-    public function endTestSuite(\PHPUnit_Framework_TestSuite $suite)
+    public function endTestSuite(TestSuite $suite)
     {
         printf("\nEnded testsuite '%s\n", $suite->getName());
 
@@ -134,9 +137,9 @@ class PHPUnitProfiler extends \PHPUnit_Framework_BaseTestListener
     /**
      * Called when a test in a test class is started.
      *
-     * @param \PHPUnit_Framework_Test $test
+     * @param Test $test
      */
-    public function startTest(\PHPUnit_Framework_Test $test)
+    public function startTest(Test $test)
     {
         $this->memoryUsedBeforeTest = memory_get_usage();
 
@@ -160,10 +163,10 @@ class PHPUnitProfiler extends \PHPUnit_Framework_BaseTestListener
     /**
      * Called when a test in a test class ends.
      *
-     * @param \PHPUnit_Framework_Test $test
+     * @param Test $test
      * @param float                   $time
      */
-    public function endTest(\PHPUnit_Framework_Test $test, $time)
+    public function endTest(Test $test, $time)
     {
         printf("Ended test '%s'\n", $test->getName());
 
@@ -249,11 +252,11 @@ class PHPUnitProfiler extends \PHPUnit_Framework_BaseTestListener
         $return = ($isNegative) ? '-' : '';
 
         return $return
-        .round(
-            abs($size) / pow(1024, ($i = floor(log(abs($size), 1024)))), 2
-        )
-        .' '
-        .$unit[$i];
+            .round(
+                abs($size) / pow(1024, ($i = floor(log(abs($size), 1024)))), 2
+            )
+            .' '
+            .$unit[$i];
     }
 
     /**
